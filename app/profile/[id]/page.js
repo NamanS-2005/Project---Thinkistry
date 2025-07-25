@@ -8,21 +8,22 @@ import Profile from "@/components/Profile"
 
 const UserProfile = ({params}) => {
   const searchParams = useSearchParams()
+  const paramss = React.use(params)
   const userName = searchParams.get('name')
 
   const [userPosts, setUserPosts] = useState([])
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(`/api/users/${params?.id}/posts`)
+      const response = await fetch(`/api/users/${paramss?.id}/posts`)
       const data = await response.json()
 
       setUserPosts(data)
     }
 
-    if(params?.id) fetchPosts()
+    if(paramss?.id) fetchPosts()
  
-  }, [params.id])
+  }, [paramss.id])
   
 
   return (
